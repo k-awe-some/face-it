@@ -4,18 +4,15 @@ const app = new Clarifai.App({
   apiKey: "918f0504ea004d5bbeb15003d269f678"
 });
 
-const faceIt = app.models
-  .predict(
-    "a403429f2ddf4b49b307e318f00e528b",
-    "https://samples.clarifai.com/face-det.jpg"
-  )
-  .then(
+const faceIt = input => {
+  app.models.predict(global.Clarifai.FACE_DETECT_MODEL, input).then(
     function(response) {
-      console.log(response);
+      console.log(response.outputs[0].data.regions[0].region_info.bounding_box);
     },
     function(err) {
       // there was an error
     }
   );
+};
 
 export default faceIt;

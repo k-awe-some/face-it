@@ -6,25 +6,29 @@ import Particles from "react-particles-js";
 import particlesConfig from "./utils/particles-config";
 
 import Navbar from "./components/nav-bar/nav-bar.component";
-import LinkForm from "./components/link-form/link-form.component";
 import Rank from "./components/rank/rank.component";
+import LinkForm from "./components/link-form/link-form.component";
+import FaceDetection from "./components/face-detection/face-detection.component";
 
 class App extends React.Component {
   state = {
-    input: ""
+    input: "",
+    imageUrl: ""
+  };
+
+  onInputChange = event => {
+    this.setState({ input: event.target.value });
   };
 
   onButtonSubmit = event => {
     event.preventDefault();
     console.log("submitted!");
-    faceIt();
-  };
-
-  onInputChange = event => {
-    console.log(event.target.value);
+    this.setState({ imageUrl: this.state.input });
+    faceIt(this.state.input); //
   };
 
   render() {
+    const { imageUrl } = this.state;
     return (
       <div className="App">
         <Particles className="App__particles" params={particlesConfig} />
@@ -34,6 +38,7 @@ class App extends React.Component {
           onInputChange={this.onInputChange}
           onButtonSubmit={this.onButtonSubmit}
         />
+        <FaceDetection imageUrl={imageUrl} />
       </div>
     );
   }
