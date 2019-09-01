@@ -3,7 +3,7 @@ import React from "react";
 import "./link-form.styles.scss";
 
 const LinkForm = () => (
-  <div className="linkform">
+  <div className="linkform z-index-1">
     <h3 className="linkform__instruction">
       {"This magic app will detect faces in your images. Give it a try!"}
     </h3>

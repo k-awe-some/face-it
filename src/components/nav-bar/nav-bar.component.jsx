@@ -4,7 +4,7 @@ import React from "react";
 import "./nav-bar.styles.scss";
 
 const NavBar = () => (
-  <div className="navbar">
+  <div className="navbar z-index-1">
     <div className="navbar__item">Sign out</div>
   </div>
 );
