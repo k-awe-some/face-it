@@ -3,12 +3,15 @@ import React from "react";
 import "./App.scss";
 
 import Navbar from "./components/nav-bar/nav-bar.component";
+import LinkForm from "./components/link-form/link-form.component";
+import Rank from "./components/rank/rank.component";
 
 function App() {
   return (
     <div className="App">
       <Navbar />
-      <h1>FaceIt - Let There Be Faces!</h1>
+      <Rank />
+      <LinkForm />
     </div>
   );
 }
