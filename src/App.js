@@ -1,14 +1,14 @@
 import React from "react";
-import logo from "./logo.svg";
-import "./App.css";
+// import logo from "./logo.svg";
+import "./App.scss";
+
+import Navbar from "./components/nav-bar/nav-bar.component";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>FaceIt - Let There Be Faces!</p>
-      </header>
+      <Navbar />
+      <h1>FaceIt - Let There Be Faces!</h1>
     </div>
   );
 }
