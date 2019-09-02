@@ -6,6 +6,7 @@ import Particles from "react-particles-js";
 import particlesConfig from "./utils/particles-config";
 
 import Navbar from "./components/nav-bar/nav-bar.component";
+import Homepage from "./components/homepage/homepage.component";
 import Rank from "./components/rank/rank.component";
 import LinkForm from "./components/link-form/link-form.component";
 import FaceDetection from "./components/face-detection/face-detection.component";
@@ -39,13 +40,17 @@ class App extends React.Component {
     return (
       <div className="App">
         <Particles className="App__particles" params={particlesConfig} />
-        <Navbar />
+        <Homepage />
+
+        {/* <Navbar />
+
+          <LinkForm
+            onInputChange={this.onInputChange}
+            onButtonSubmit={this.onButtonSubmit}
+          />
         <Rank />
-        <LinkForm
-          onInputChange={this.onInputChange}
-          onButtonSubmit={this.onButtonSubmit}
-        />
-        <FaceDetection imageUrl={imageUrl} faceBoxes={faceBoxes} />
+
+        <FaceDetection imageUrl={imageUrl} faceBoxes={faceBoxes} /> */}
       </div>
     );
   }
