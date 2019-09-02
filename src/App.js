@@ -1,4 +1,11 @@
 import React from "react";
+import {
+  BrowserRouter as Router,
+  Route,
+  Redirect,
+  Switch
+} from "react-router-dom";
+
 // import logo from "./logo.svg";
 import { faceIt } from "./utils/clarifai-api";
 import "./App.scss";
@@ -7,15 +14,14 @@ import particlesConfig from "./utils/particles-config";
 
 import Navbar from "./components/nav-bar/nav-bar.component";
 import Homepage from "./components/homepage/homepage.component";
-import Rank from "./components/rank/rank.component";
-import LinkForm from "./components/link-form/link-form.component";
-import FaceDetection from "./components/face-detection/face-detection.component";
+import AppPage from "./components/app-page/app-page.component";
 
 class App extends React.Component {
   state = {
     input: "",
     imageUrl: "",
-    faceBoxes: []
+    faceBoxes: [],
+    loggedIn: true
   };
 
   onInputChange = event => {
@@ -26,8 +32,6 @@ class App extends React.Component {
     event.preventDefault();
     this.setState({ imageUrl: this.state.input });
     faceIt(this.state.input, this.displayFaceBox);
-    // must be 'input' and not 'imageUrl'
-    // because at this point this.setState() hasn't done updating
   };
 
   displayFaceBox = faceBoxes => {
@@ -36,22 +40,37 @@ class App extends React.Component {
   };
 
   render() {
-    const { imageUrl, faceBoxes } = this.state;
+    const { imageUrl, faceBoxes, loggedIn } = this.state;
     return (
-      <div className="App">
-        <Particles className="App__particles" params={particlesConfig} />
-        <Homepage />
-
-        {/* <Navbar />
-
-          <LinkForm
-            onInputChange={this.onInputChange}
-            onButtonSubmit={this.onButtonSubmit}
-          />
-        <Rank />
-
-        <FaceDetection imageUrl={imageUrl} faceBoxes={faceBoxes} /> */}
-      </div>
+      <Router>
+        <div className="App">
+          <Particles className="App__particles" params={particlesConfig} />
+          <Navbar />
+          <Switch>
+            <Route
+              exact
+              path="/"
+              render={() => (loggedIn ? <Redirect to="/app" /> : <Homepage />)}
+            />
+            <Route
+              exact
+              path="/app"
+              render={() =>
+                loggedIn ? (
+                  <AppPage
+                    onInputChange={this.onInputChange}
+                    onButtonSubmit={this.onButtonSubmit}
+                    imageUrl={imageUrl}
+                    faceBoxes={faceBoxes}
+                  />
+                ) : (
+                  <Redirect to="/" />
+                )
+              }
+            />
+          </Switch>
+        </div>
+      </Router>
     );
   }
 }
