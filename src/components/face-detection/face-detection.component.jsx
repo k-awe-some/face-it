@@ -2,23 +2,30 @@ import React from "react";
 
 import "./face-detection.styles.scss";
 
-const FaceDetection = ({ imageUrl, faceBox }) => (
+const FaceDetection = ({ imageUrl, faceBoxes }) => (
   <div className="face-detection z-index-1">
-    <img
-      className="face-detection__image"
-      id="inputImage"
-      src={imageUrl}
-      alt="Face(s) detected"
-    />
-    <div
-      className="face-detection__face-box"
-      style={{
-        left: faceBox.leftCol,
-        top: faceBox.topRow,
-        right: faceBox.rightCol,
-        bottom: faceBox.bottomRow
-      }}
-    ></div>
+    {imageUrl && (
+      <React.Fragment>
+        <img
+          className="face-detection__image"
+          id="inputImage"
+          src={imageUrl}
+          alt="Face(s) detected"
+        />
+        {faceBoxes.map((box, index) => (
+          <div
+            className="face-detection__face-box"
+            key={index}
+            style={{
+              left: box.leftCol,
+              top: box.topRow,
+              right: box.rightCol,
+              bottom: box.bottomRow
+            }}
+          />
+        ))}
+      </React.Fragment>
+    )}
   </div>
 );
 

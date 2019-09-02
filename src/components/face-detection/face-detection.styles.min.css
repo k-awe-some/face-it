@@ -1,1 +1,1 @@
-.face-detection{position:relative}.face-detection__image{width:500px;height:auto}.face-detection__face-box{position:absolute;border:1px solid #000}
+.face-detection{position:relative}.face-detection__image{width:500px;height:auto}.face-detection__face-box{position:absolute;border:3px solid;border-image-source:linear-gradient(to left bottom, #004d7a, #008793, #00bf72, #a8eb12);border-image-slice:1}

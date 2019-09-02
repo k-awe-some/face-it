@@ -14,7 +14,7 @@ class App extends React.Component {
   state = {
     input: "",
     imageUrl: "",
-    faceBox: {}
+    faceBoxes: []
   };
 
   onInputChange = event => {
@@ -29,13 +29,13 @@ class App extends React.Component {
     // because at this point this.setState() hasn't done updating
   };
 
-  displayFaceBox = faceBox => {
-    this.setState({ faceBox });
-    console.log(this.state.faceBox);
+  displayFaceBox = faceBoxes => {
+    this.setState({ faceBoxes });
+    console.log(this.state.faceBoxes);
   };
 
   render() {
-    const { imageUrl, faceBox } = this.state;
+    const { imageUrl, faceBoxes } = this.state;
     return (
       <div className="App">
         <Particles className="App__particles" params={particlesConfig} />
@@ -45,7 +45,7 @@ class App extends React.Component {
           onInputChange={this.onInputChange}
           onButtonSubmit={this.onButtonSubmit}
         />
-        <FaceDetection imageUrl={imageUrl} faceBox={faceBox} />
+        <FaceDetection imageUrl={imageUrl} faceBoxes={faceBoxes} />
       </div>
     );
   }
