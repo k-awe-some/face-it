@@ -1,6 +1,6 @@
 import React from "react";
 // import logo from "./logo.svg";
-import faceIt from "./utils/clarifai-api";
+import { faceIt } from "./utils/clarifai-api";
 import "./App.scss";
 import Particles from "react-particles-js";
 import particlesConfig from "./utils/particles-config";
@@ -13,7 +13,8 @@ import FaceDetection from "./components/face-detection/face-detection.component"
 class App extends React.Component {
   state = {
     input: "",
-    imageUrl: ""
+    imageUrl: "",
+    faceBox: {}
   };
 
   onInputChange = event => {
@@ -22,13 +23,19 @@ class App extends React.Component {
 
   onButtonSubmit = event => {
     event.preventDefault();
-    console.log("submitted!");
     this.setState({ imageUrl: this.state.input });
-    faceIt(this.state.input); //
+    faceIt(this.state.input, this.displayFaceBox);
+    // must be 'input' and not 'imageUrl'
+    // because at this point this.setState() hasn't done updating
+  };
+
+  displayFaceBox = faceBox => {
+    this.setState({ faceBox });
+    console.log(this.state.faceBox);
   };
 
   render() {
-    const { imageUrl } = this.state;
+    const { imageUrl, faceBox } = this.state;
     return (
       <div className="App">
         <Particles className="App__particles" params={particlesConfig} />
@@ -38,7 +45,7 @@ class App extends React.Component {
           onInputChange={this.onInputChange}
           onButtonSubmit={this.onButtonSubmit}
         />
-        <FaceDetection imageUrl={imageUrl} />
+        <FaceDetection imageUrl={imageUrl} faceBox={faceBox} />
       </div>
     );
   }

@@ -4,15 +4,25 @@ const app = new Clarifai.App({
   apiKey: "918f0504ea004d5bbeb15003d269f678"
 });
 
-const faceIt = input => {
-  app.models.predict(global.Clarifai.FACE_DETECT_MODEL, input).then(
-    function(response) {
-      console.log(response.outputs[0].data.regions[0].region_info.bounding_box);
-    },
-    function(err) {
-      // there was an error
-    }
-  );
+const calcFaceLocation = response => {
+  console.log(response);
+  const clarifaiFace =
+    response.outputs[0].data.regions[2].region_info.bounding_box;
+  const inputImage = document.getElementById("inputImage");
+  const width = Number(inputImage.width);
+  const height = Number(inputImage.height);
+  return {
+    leftCol: clarifaiFace.left_col * width,
+    topRow: clarifaiFace.top_row * height,
+    rightCol: width - clarifaiFace.right_col * width,
+    bottomRow: height - clarifaiFace.bottom_row * height
+  };
 };
 
-export default faceIt;
+export const faceIt = (input, displayFaceBoxCallback) => {
+  app.models
+    .predict(global.Clarifai.FACE_DETECT_MODEL, input)
+    .then(response => calcFaceLocation(response))
+    .then(data => displayFaceBoxCallback(data))
+    .catch(error => console.log(error.message));
+};
