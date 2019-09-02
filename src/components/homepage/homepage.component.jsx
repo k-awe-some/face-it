@@ -5,7 +5,7 @@ import SignUp from "../sign-up/sign-up.component";
 import "./homepage.styles.scss";
 
 const Homepage = () => (
-  <div className="homepage">
+  <div className="homepage z-index-1">
     <SignIn />
     <SignUp />
   </div>
