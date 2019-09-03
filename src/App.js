@@ -14,7 +14,6 @@ import "./App.scss";
 import Particles from "react-particles-js";
 import particlesConfig from "./utils/particles-config";
 
-import Navbar from "./components/nav-bar/nav-bar.component";
 import Homepage from "./components/homepage/homepage.component";
 import AppPage from "./components/app-page/app-page.component";
 
@@ -60,7 +59,6 @@ class App extends React.Component {
       <Router>
         <div className="App">
           <Particles className="App__particles" params={particlesConfig} />
-          <Navbar />
           <Switch>
             <Route
               exact
