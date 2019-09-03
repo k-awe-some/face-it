@@ -6,7 +6,7 @@ import {
   Switch
 } from "react-router-dom";
 
-import { auth } from "./firebase/firebase";
+import { auth, createUserDocument } from "./firebase/firebase";
 
 // import logo from "./logo.svg";
 
@@ -25,9 +25,9 @@ class App extends React.Component {
   unsubscribeFromAuth = null;
 
   componentDidMount = () => {
-    this.unsubscribeFromAuth = auth.onAuthStateChanged(user => {
+    this.unsubscribeFromAuth = auth.onAuthStateChanged(async user => {
       this.setState({ ...this.state, currentUser: user });
-      console.log(this.state);
+      createUserDocument(user);
     });
   };
 
