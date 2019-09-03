@@ -6,6 +6,8 @@ import {
   Switch
 } from "react-router-dom";
 
+import { auth } from "./firebase/firebase";
+
 // import logo from "./logo.svg";
 import { faceIt } from "./utils/clarifai-api";
 import "./App.scss";
@@ -18,11 +20,24 @@ import AppPage from "./components/app-page/app-page.component";
 
 class App extends React.Component {
   state = {
+    currentUser: null,
     input: "",
     imageUrl: "",
-    faceBoxes: [],
-    loggedIn: false
+    faceBoxes: []
   };
+
+  unsubscribeFromAuth = null;
+
+  componentDidMount = () => {
+    this.unsubscribeFromAuth = auth.onAuthStateChanged(user => {
+      this.setState({ ...this.state, currentUser: user });
+      console.log(this.state);
+    });
+  };
+
+  componentWillUnmount() {
+    this.unsubscribeFromAuth();
+  }
 
   onInputChange = event => {
     this.setState({ input: event.target.value });
@@ -40,7 +55,7 @@ class App extends React.Component {
   };
 
   render() {
-    const { imageUrl, faceBoxes, loggedIn } = this.state;
+    const { currentUser, imageUrl, faceBoxes } = this.state;
     return (
       <Router>
         <div className="App">
@@ -50,13 +65,15 @@ class App extends React.Component {
             <Route
               exact
               path="/"
-              render={() => (loggedIn ? <Redirect to="/app" /> : <Homepage />)}
+              render={() =>
+                currentUser ? <Redirect to="/app" /> : <Homepage />
+              }
             />
             <Route
               exact
               path="/app"
               render={() =>
-                loggedIn ? (
+                currentUser ? (
                   <AppPage
                     onInputChange={this.onInputChange}
                     onButtonSubmit={this.onButtonSubmit}
