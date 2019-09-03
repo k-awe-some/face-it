@@ -9,7 +9,7 @@ import {
 import { auth } from "./firebase/firebase";
 
 // import logo from "./logo.svg";
-import { faceIt } from "./utils/clarifai-api";
+
 import "./App.scss";
 import Particles from "react-particles-js";
 import particlesConfig from "./utils/particles-config";
@@ -19,10 +19,7 @@ import AppPage from "./components/app-page/app-page.component";
 
 class App extends React.Component {
   state = {
-    currentUser: null,
-    input: "",
-    imageUrl: "",
-    faceBoxes: []
+    currentUser: null
   };
 
   unsubscribeFromAuth = null;
@@ -38,23 +35,8 @@ class App extends React.Component {
     this.unsubscribeFromAuth();
   }
 
-  onInputChange = event => {
-    this.setState({ input: event.target.value });
-  };
-
-  onButtonSubmit = event => {
-    event.preventDefault();
-    this.setState({ imageUrl: this.state.input });
-    faceIt(this.state.input, this.displayFaceBox);
-  };
-
-  displayFaceBox = faceBoxes => {
-    this.setState({ faceBoxes });
-    console.log(this.state.faceBoxes);
-  };
-
   render() {
-    const { currentUser, imageUrl, faceBoxes } = this.state;
+    const { currentUser } = this.state;
     return (
       <Router>
         <div className="App">
@@ -70,18 +52,7 @@ class App extends React.Component {
             <Route
               exact
               path="/app"
-              render={() =>
-                currentUser ? (
-                  <AppPage
-                    onInputChange={this.onInputChange}
-                    onButtonSubmit={this.onButtonSubmit}
-                    imageUrl={imageUrl}
-                    faceBoxes={faceBoxes}
-                  />
-                ) : (
-                  <Redirect to="/" />
-                )
-              }
+              render={() => (currentUser ? <AppPage /> : <Redirect to="/" />)}
             />
           </Switch>
         </div>
