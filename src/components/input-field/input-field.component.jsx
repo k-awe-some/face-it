@@ -2,10 +2,10 @@ import React from "react";
 
 import "./input-field.styles.scss";
 
-const InputField = ({ onInputChange, ...otherProps }) => (
-  <form className="input">
-    <input className="input__field" onChange={onInputChange} {...otherProps} />{" "}
-  </form>
+const InputField = ({ ...otherProps }) => (
+  <div className="input">
+    <input className="input__field" {...otherProps} />{" "}
+  </div>
 );
 
 export default InputField;

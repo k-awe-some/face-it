@@ -14,7 +14,7 @@ const LinkForm = ({ onInputChange, onButtonSubmit }) => (
     <InputField
       type="text"
       placeholder="Place your image link"
-      onInputChange={onInputChange}
+      onChange={onInputChange}
     />
 
     <button onClick={onButtonSubmit}>

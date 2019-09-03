@@ -21,7 +21,7 @@ class App extends React.Component {
     input: "",
     imageUrl: "",
     faceBoxes: [],
-    loggedIn: true
+    loggedIn: false
   };
 
   onInputChange = event => {
