@@ -16,16 +16,16 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 
 /* INITIALIZE FIRESTORE AUTHENTICATION */
-const firestore = firebase.firestore();
 export const auth = firebase.auth();
 
-/* STORE USER DOCUMENTS IN FIRESTORE DATABASE*/
+/* STORE USER DOCUMENT IN FIRESTORE DATABASE*/
+const firestore = firebase.firestore();
+
 export const createUserDocument = async (userAuth, additionalData) => {
   if (!userAuth) return;
 
   const userDocumentRef = firestore.doc(`users/${userAuth.uid}`);
   const userDocumentSnapshot = await userDocumentRef.get();
-  console.log(userDocumentSnapshot);
 
   if (!userDocumentSnapshot.exists) {
     const { displayName, email } = userAuth;
