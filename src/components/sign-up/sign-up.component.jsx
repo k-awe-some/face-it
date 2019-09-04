@@ -1,6 +1,6 @@
 import React from "react";
 
-import { auth } from "../../firebase/firebase";
+import { auth, createUserDocument } from "../../firebase/firebase";
 
 import InputField from "../input-field/input-field.component";
 import "./sign-up.styles.scss";
@@ -33,8 +33,7 @@ class SignUp extends React.Component {
         email,
         password
       );
-      user.displayName = displayName;
-      console.log(user);
+      createUserDocument(user, { displayName });
       this.setState({
         displayName: "",
         email: "",
