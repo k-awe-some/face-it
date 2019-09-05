@@ -1,52 +1,51 @@
 .custom-button {
+  border: none;
+  outline: none;
+  padding: 0;
   width: 150px;
   margin-top: 5rem;
   font-size: 1.8rem;
   font-weight: 500;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   transition: all 0.2s ease-in-out;
 
-  &:hover {
-    color: #324B4E;
+  svg {
+    height: 50px;
+    width: 150px;
+    fill: none;
+    stroke-width: 5;
+
+    .poly1 {
+      stroke: rgba(#befbff, 0.7);
+      fill: rgba(#008793, 0.7);
+      transition: all 0.7s ease-in-out;
+    }
+
+    .poly2 {
+      stroke: #008793;
+      stroke-dasharray: 15 420;
+      stroke-dashoffset: 15;
+      transition: all 0.7s ease-in-out;
+    }
   }
 
-	svg {
-		height: 50px;
-		width: 150px;
-		fill: none;
-		stroke-width: 5;
+  span {
+    position: absolute;
+    margin: auto 0;
+    letter-spacing: 3px;
+  }
 
-		.poly1 {
-			stroke: rgba(#BEFBFF, 0.7);
-			fill: rgba(#008793, 0.7);
-			transition: all 0.7s ease-in-out;
-		}
+  &:hover {
+    color: #324b4e;
 
-		.poly2 {
-			stroke: #008793;
-			stroke-dasharray: 15 420;
-			stroke-dashoffset: 15;
-			transition: all 0.7s ease-in-out;
-		}
-	}
+    .poly1 {
+      fill: rgba(#befbff, 0.9);
+    }
 
-	span {
-		position: absolute;
-		margin: auto 0;
-		letter-spacing: 3px;
-
-	}
-
-	&:hover {
-		.poly1{
-			fill: rgba(#BEFBFF, 0.9);
-		}
-
-		.poly2 {
-			stroke-dashoffset: -420;
-		}
-	}
+    .poly2 {
+      stroke-dashoffset: -420;
+    }
+  }
 }

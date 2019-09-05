@@ -1,1 +1,1 @@
-.sign-in{display:flex;flex-direction:column;width:30rem}.sign-in__form{margin-top:4rem}.sign-in p{font-size:1.6rem;font-style:italic}.sign-in__anonymous{cursor:pointer;text-decoration:underline}
+.sign-in{display:flex;flex-direction:column;width:30rem}.sign-in__form{margin-top:4rem}.sign-in p{font-size:1.6rem;font-style:italic;color:#BEFBFF}.sign-in__anonymous{cursor:pointer;text-decoration:underline}

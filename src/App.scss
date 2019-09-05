@@ -8,7 +8,7 @@
     #a8eb12
   );
   min-height: 100vh;
-  padding: 0 20rem;
+  padding: 0 10rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -20,6 +20,12 @@
     right: 0;
     bottom: 0;
     left: 0;
+  }
+
+  h1 {
+    font-size: 2.4rem;
+    font-weight: 500;
+    color: #E7FEFF;
   }
 }
 

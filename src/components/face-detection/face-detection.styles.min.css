@@ -1,1 +1,1 @@
-.face-detection{position:relative}.face-detection__image{width:500px;height:auto}.face-detection__face-box{position:absolute;border:3px solid;border-image-source:linear-gradient(to left bottom, #004d7a, #008793, #00bf72, #a8eb12);border-image-slice:1}
+.face-detection{position:relative;margin:3rem 0}.face-detection__image{width:500px;height:auto;border-radius:2px;box-shadow:6px 5px 90px 20px rgba(0,0,0,0.2)}.face-detection__face-box{position:absolute;border:3px solid;border-image-source:linear-gradient(to left bottom, #004d7a, #008793, #00bf72, #a8eb12);border-image-slice:1}

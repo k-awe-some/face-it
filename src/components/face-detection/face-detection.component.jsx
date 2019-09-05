@@ -3,7 +3,7 @@ import React from "react";
 import "./face-detection.styles.scss";
 
 const FaceDetection = ({ imageUrl, faceBoxes }) => (
-  <div className="face-detection z-index-1">
+  <div className="face-detection">
     {imageUrl && (
       <React.Fragment>
         <img

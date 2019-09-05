@@ -28,7 +28,7 @@
       #a8eb12,
       #00bf72,
       #008793,
-      #004d7a,
+      #004d7a
     );
     background-size: 500% auto;
     -webkit-animation: gradient 5s linear infinite;
@@ -39,31 +39,42 @@
     flex-grow: 0.8;
     vertical-align: middle;
     background: transparent;
-    color: #F5F9FF;
+    color: #f5f9ff;
     font-size: 1.8rem;
     line-height: 2.4rem;
     border: none;
     outline: none;
     padding-left: 2rem;
 
+    &:-webkit-autofill,
+    textarea:-webkit-autofill,
+    select:-webkit-autofill {
+      transition-delay: 7200s;
+    }
+
     &::-webkit-input-placeholder {
-      color: #A7AABD;
+      color: #a7aabd;
+      font-style: italic;
     }
 
     &::-moz-placeholder {
-      color: #A7AABD;
+      color: #a7aabd;
+      font-style: italic;
     }
 
     &:-ms-input-placeholder {
-      color: #A7AABD;
+      color: #a7aabd;
+      font-style: italic;
     }
 
     &::-ms-input-placeholder {
-      color: #A7AABD;
+      color: #a7aabd;
+      font-style: italic;
     }
 
     &::placeholder {
-      color: #A7AABD;
+      color: #a7aabd;
+      font-style: italic;
     }
   }
 }

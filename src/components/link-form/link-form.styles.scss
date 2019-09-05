@@ -1,6 +1,7 @@
 .linkform {
   position: relative;
-  width: auto;
+  width: 75%;
+  height: auto;
   font-size: 2rem;
   display: flex;
   flex-direction: column;
@@ -9,6 +10,12 @@
   &__instruction {
     text-align: center;
     font-size: 2.5rem;
+    font-style: italic;
+    margin: 0 auto 2rem;
+  }
+
+  &__form {
+    width: 100%;
   }
 
   button {

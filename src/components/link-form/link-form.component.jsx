@@ -6,20 +6,19 @@ import InputField from "../input-field/input-field.component";
 import "./link-form.styles.scss";
 
 const LinkForm = ({ onInputChange, onButtonSubmit }) => (
-  <div className="linkform z-index-1">
-    <h3 className="linkform__instruction">
-      {"This magic app will detect faces in your images. Give it a try!"}
-    </h3>
+  <div className="linkform">
+    <h1 className="linkform__instruction">{"Let there be faces!"}</h1>
+    <form className="linkform__form">
+      <InputField
+        type="text"
+        placeholder="Place your image link"
+        onChange={onInputChange}
+      />
 
-    <InputField
-      type="text"
-      placeholder="Place your image link"
-      onChange={onInputChange}
-    />
-
-    <button onClick={onButtonSubmit}>
-      <FaBinoculars size={30} />
-    </button>
+      <button onClick={onButtonSubmit}>
+        <FaBinoculars size={30} />
+      </button>
+    </form>
   </div>
 );
 

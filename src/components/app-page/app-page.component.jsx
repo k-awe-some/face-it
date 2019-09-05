@@ -1,6 +1,5 @@
 import React from "react";
 
-import NavBar from "../nav-bar/nav-bar.component";
 import LinkForm from "../link-form/link-form.component";
 import FaceDetection from "../face-detection/face-detection.component";
 
@@ -32,7 +31,6 @@ class AppPage extends React.Component {
     const { imageUrl, faceBoxes } = this.state;
     return (
       <React.Fragment>
-        <NavBar />
         <LinkForm
           onInputChange={this.onInputChange}
           onButtonSubmit={this.onButtonSubmit}

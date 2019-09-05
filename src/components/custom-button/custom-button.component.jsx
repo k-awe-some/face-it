@@ -3,7 +3,7 @@ import React from "react";
 import "./custom-button.styles.scss";
 
 const CustomButton = ({ textContent, onButtonCLick }) => (
-  <div className="custom-button" onClick={onButtonCLick}>
+  <button className="custom-button" onClick={onButtonCLick}>
     <span>{textContent.toUpperCase()}</span>
     <svg>
       <polyline
@@ -15,7 +15,7 @@ const CustomButton = ({ textContent, onButtonCLick }) => (
         points="0 0, 150 0, 150 50, 0 50, 0 0"
       ></polyline>
     </svg>
-  </div>
+  </button>
 );
 
 export default CustomButton;

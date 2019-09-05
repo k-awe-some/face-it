@@ -8,12 +8,11 @@ import {
 
 import { auth, createUserDocument } from "./firebase/firebase";
 
-// import logo from "./logo.svg";
-
 import "./App.scss";
 import Particles from "react-particles-js";
 import particlesConfig from "./utils/particles-config";
 
+import NavBar from "./components/nav-bar/nav-bar.component";
 import Homepage from "./components/homepage/homepage.component";
 import AppPage from "./components/app-page/app-page.component";
 
@@ -54,6 +53,7 @@ class App extends React.Component {
       <Router>
         <div className="App">
           <Particles className="App__particles" params={particlesConfig} />
+          <NavBar currentUser={currentUser} />
           <Switch>
             <Route
               exact

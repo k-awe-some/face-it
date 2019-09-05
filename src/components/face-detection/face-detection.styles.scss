@@ -1,9 +1,12 @@
 .face-detection {
   position: relative;
+  margin: 3rem 0;
 
   &__image {
     width: 500px;
     height: auto;
+    border-radius: 2px;
+    box-shadow: 6px 5px 90px 20px rgba(0,0,0,0.20);
   }
 
   &__face-box {

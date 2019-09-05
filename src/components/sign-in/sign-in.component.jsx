@@ -54,7 +54,7 @@ class SignIn extends React.Component {
             onButtonCLick={this.handleSubmit}
           />
         </form>
-        <p>
+        <p className="z-index-1">
           Or click{" "}
           <span
             className="sign-in__anonymous"
