@@ -1,7 +1,6 @@
 import React from "react";
 
 import NavBar from "../nav-bar/nav-bar.component";
-import Rank from "../rank/rank.component";
 import LinkForm from "../link-form/link-form.component";
 import FaceDetection from "../face-detection/face-detection.component";
 
@@ -34,7 +33,6 @@ class AppPage extends React.Component {
     return (
       <React.Fragment>
         <NavBar />
-        <Rank />
         <LinkForm
           onInputChange={this.onInputChange}
           onButtonSubmit={this.onButtonSubmit}
