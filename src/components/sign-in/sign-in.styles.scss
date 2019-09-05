@@ -6,4 +6,14 @@
   &__form {
     margin-top: 4rem;
   }
+
+  p {
+    font-size: 1.6rem;
+    font-style: italic;
+  }
+
+  &__anonymous {
+    cursor: pointer;
+    text-decoration: underline;
+  }
 }

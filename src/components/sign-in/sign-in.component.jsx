@@ -54,6 +54,16 @@ class SignIn extends React.Component {
             onButtonCLick={this.handleSubmit}
           />
         </form>
+        <p>
+          Or click{" "}
+          <span
+            className="sign-in__anonymous"
+            onClick={() => auth.signInAnonymously()}
+          >
+            here
+          </span>{" "}
+          to sign in anonymously.
+        </p>
       </div>
     );
   }
