@@ -6,13 +6,11 @@ import "./nav-bar.styles.scss";
 
 const NavBar = ({ currentUser }) => (
   <div className="navbar">
-    <img
-      className="navbar__item z-index-1"
-      src={logo}
-      alt="Face It! logo"
-      width={120}
-      height={120}
-    />
+    <div className="navbar__item z-index-1">
+      <img src={logo} alt="Face It! logo" width={120} height={120} />
+      <p>Face It!</p>
+    </div>
+
     <div className="navbar__item z-index-1" onClick={() => auth.signOut()}>
       {currentUser ? <span>Sign out</span> : null}
     </div>
