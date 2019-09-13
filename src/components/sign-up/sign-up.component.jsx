@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 import { auth, createUserDocument } from "../../firebase/firebase";
 
@@ -6,22 +6,22 @@ import InputField from "../input-field/input-field.component";
 import "./sign-up.styles.scss";
 import CustomButton from "../custom-button/custom-button.component";
 
-class SignUp extends React.Component {
-  state = {
+const SignUp = () => {
+  const [userCredentials, setUserCredentials] = useState({
     displayName: "",
     email: "",
     password: "",
     confirmedPassword: ""
-  };
+  });
+  const { displayName, email, password, confirmedPassword } = userCredentials;
 
-  handleChange = event => {
+  const handleChange = event => {
     const { name, value } = event.target;
-    this.setState({ [name]: value });
+    setUserCredentials({ ...userCredentials, [name]: value });
   };
 
-  handleSubmit = async event => {
+  const handleSubmit = async event => {
     event.preventDefault();
-    const { displayName, email, password, confirmedPassword } = this.state;
 
     if (password !== confirmedPassword) {
       alert("Passwords not matched!");
@@ -34,7 +34,7 @@ class SignUp extends React.Component {
         password
       );
       createUserDocument(user, { displayName });
-      this.setState({
+      setUserCredentials({
         displayName: "",
         email: "",
         password: "",
@@ -45,48 +45,42 @@ class SignUp extends React.Component {
     }
   };
 
-  render() {
-    const { displayName, email, password, confirmedPassword } = this.state;
-    return (
-      <div className="sign-up">
-        <h1>{"I'd like to be signed up."}</h1>
-        <form className="sign-up__form">
-          <InputField
-            type="text"
-            placeholder="Display name"
-            name="displayName"
-            value={displayName}
-            onChange={this.handleChange}
-          />
-          <InputField
-            type="email"
-            placeholder="Email"
-            name="email"
-            value={email}
-            onChange={this.handleChange}
-          />
-          <InputField
-            type="password"
-            placeholder="Password"
-            name="password"
-            value={password}
-            onChange={this.handleChange}
-          />
-          <InputField
-            type="password"
-            placeholder="Confirm password"
-            name="confirmedPassword"
-            value={confirmedPassword}
-            onChange={this.handleChange}
-          />
-          <CustomButton
-            textContent={"sign up"}
-            onButtonCLick={this.handleSubmit}
-          />{" "}
-        </form>
-      </div>
-    );
-  }
-}
+  return (
+    <div className="sign-up">
+      <h1>{"I'd like to be signed up."}</h1>
+      <form className="sign-up__form">
+        <InputField
+          type="text"
+          placeholder="Display name"
+          name="displayName"
+          value={displayName}
+          onChange={handleChange}
+        />
+        <InputField
+          type="email"
+          placeholder="Email"
+          name="email"
+          value={email}
+          onChange={handleChange}
+        />
+        <InputField
+          type="password"
+          placeholder="Password"
+          name="password"
+          value={password}
+          onChange={handleChange}
+        />
+        <InputField
+          type="password"
+          placeholder="Confirm password"
+          name="confirmedPassword"
+          value={confirmedPassword}
+          onChange={handleChange}
+        />
+        <CustomButton textContent={"sign up"} onButtonCLick={handleSubmit} />{" "}
+      </form>
+    </div>
+  );
+};
 
 export default SignUp;

@@ -5,7 +5,6 @@ const app = new Clarifai.App({
 });
 
 const calcFaceLocation = response => {
-  console.log(response);
   const faceRegions = [];
   response.outputs[0].data.regions.map(face => {
     const clarifaiFace = face.region_info.bounding_box;

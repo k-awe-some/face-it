@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import {
   BrowserRouter as Router,
   Route,
@@ -16,62 +16,45 @@ import NavBar from "./components/nav-bar/nav-bar.component";
 import Homepage from "./components/homepage/homepage.component";
 import AppPage from "./components/app-page/app-page.component";
 
-class App extends React.Component {
-  state = {
-    currentUser: null
-  };
+const App = () => {
+  const [currentUser, setCurrentUser] = useState(null);
 
-  unsubscribeFromAuth = null;
-
-  componentDidMount = () => {
-    this.unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
+  useEffect(() => {
+    auth.onAuthStateChanged(async userAuth => {
       if (userAuth) {
         const userDocumentRef = await createUserDocument(userAuth);
         userDocumentRef.onSnapshot(snapshot => {
-          this.setState({
-            currentUser: {
-              id: snapshot.id,
-              ...snapshot.data()
-            }
+          setCurrentUser({
+            id: snapshot.id,
+            ...snapshot.data()
           });
         });
       } else {
-        this.setState({
-          currentUser: null
-        });
+        setCurrentUser(null);
       }
     });
-  };
+  }, []);
 
-  componentWillUnmount() {
-    this.unsubscribeFromAuth();
-  }
-
-  render() {
-    const { currentUser } = this.state;
-    return (
-      <Router>
-        <div className="App">
-          <Particles className="App__particles" params={particlesConfig} />
-          <NavBar currentUser={currentUser} />
-          <Switch>
-            <Route
-              exact
-              path="/"
-              render={() =>
-                currentUser ? <Redirect to="/app" /> : <Homepage />
-              }
-            />
-            <Route
-              exact
-              path="/app"
-              render={() => (currentUser ? <AppPage /> : <Redirect to="/" />)}
-            />
-          </Switch>
-        </div>
-      </Router>
-    );
-  }
-}
+  return (
+    <Router>
+      <div className="App">
+        <Particles className="App__particles" params={particlesConfig} />
+        <NavBar currentUser={currentUser} />
+        <Switch>
+          <Route
+            exact
+            path="/"
+            render={() => (currentUser ? <Redirect to="/app" /> : <Homepage />)}
+          />
+          <Route
+            exact
+            path="/app"
+            render={() => (currentUser ? <AppPage /> : <Redirect to="/" />)}
+          />
+        </Switch>
+      </div>
+    </Router>
+  );
+};
 
 export default App;
